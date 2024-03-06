@@ -4,26 +4,30 @@ codeunit 50100 DataGenerator
     var
         i: Integer;
     begin
-        numberOfItems := 100;
+        numberOfItems := 100000;
 
         // Generate data
         for i := 1 to numberOfItems do begin
-            AddItem(Format(1000 + i), 'TestItem ' + Format(i), 'Description for item ', 'DESK', i);
+            AddItem('aaaaaaaaa' + Format(i), 'TestItem ' + Format(i), 'Description for item ', 'DESK', i);
         end;
 
     end;
 
     procedure DeleteItemsData()
     begin
-        numberOfItems := 100;
-        DeleteItem(Format(1000 + 1), Format(1000 + numberOfItems));
+        DeleteItem('aaaaaaaaa', 'aaaaaaaab');
     end;
 
     procedure DeleteItem(ItemNumberStart: Text; ItemNumberEnd: Text)
     var
         ItemRecord: Record Item;
+        DeleteDemodataConfirmationQst: Label 'Are you sure you want to delete all sample data generated?';
     begin
         ItemRecord.SetRange("No.", ItemNumberStart, ItemNumberEnd);
+
+        if not Confirm(DeleteDemodataConfirmationQst + '(' + Format(ItemRecord.Count) + ')') then
+            exit;
+
         ItemRecord.DeleteAll(true);
     end;
 

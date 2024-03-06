@@ -2,12 +2,15 @@ page 50102 ExtraPerfItems
 {
     PageType = API;
     Caption = 'ExtraPerfItems';
+
     APIPublisher = 'BusinessCentral';
     APIGroup = 'performance';
     APIVersion = 'beta';
+
     EntityName = 'ExtraPerfItem';
     EntitySetName = 'ExtraPerfItems';
-    SourceTable = Item;
+
+    SourceTable = "Item";
     DelayedInsert = true;
 
     ODataKeyFields = SystemId;
@@ -105,4 +108,17 @@ page 50102 ExtraPerfItems
             }
         }
     }
+    trigger OnFindRecord(Which: Text): Boolean
+    begin
+        testCounter += 1;
+        exit(true);
+    end;
+
+    trigger OnNextRecord(Steps: Integer): Integer
+    begin
+        testCounter += 1;
+    end;
+
+    var
+        testCounter: Integer;
 }

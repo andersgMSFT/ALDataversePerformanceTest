@@ -4,6 +4,8 @@ page 50101 ItemsPart
     ApplicationArea = All;
     SourceTable = Item;
 
+    SourceTableView = WHERE("No." = filter('aaaaaa'));
+
     layout
     {
         area(content)
@@ -18,10 +20,10 @@ page 50101 ItemsPart
                 {
                     ApplicationArea = All;
                 }
-            }
-            field("Unit Price"; Rec."Unit Price")
-            {
-                ApplicationArea = All;
+                field("Unit Price"; Rec."Unit Price")
+                {
+                    ApplicationArea = All;
+                }
             }
         }
     }

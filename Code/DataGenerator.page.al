@@ -16,6 +16,7 @@ page 50100 DataGenerator
             part(ItemsPart; ItemsPart)
             {
                 ApplicationArea = All;
+
             }
         }
     }
