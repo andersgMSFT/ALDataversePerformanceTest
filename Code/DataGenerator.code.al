@@ -39,8 +39,6 @@ codeunit 50100 DataGenerator
         ItemRecord.Init();
         ItemRecord.Validate("No.", ItemNumber);
 
-
-
         // Apply item template for physical items
         ItemTempl.SetFilter("Inventory Posting Group", '<>%1', '');
         ItemTempl.FindFirst();
