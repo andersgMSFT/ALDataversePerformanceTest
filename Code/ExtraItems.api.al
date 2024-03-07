@@ -7,8 +7,8 @@ page 50102 ExtraPerfItems
     APIGroup = 'performance';
     APIVersion = 'beta';
 
-    EntityName = 'ExtraPerfItem';
-    EntitySetName = 'ExtraPerfItems';
+    EntityName = 'extraPerfItem';
+    EntitySetName = 'extraPerfItems';
 
     SourceTable = "Item";
     DelayedInsert = true;
@@ -108,17 +108,23 @@ page 50102 ExtraPerfItems
             }
         }
     }
+
     trigger OnFindRecord(Which: Text): Boolean
     begin
-        testCounter += 1;
+        TempItems.Copy(Rec);
+        if TempItems.Find(Which) then begin
+            Rec := TempItems;
+            exit(true);
+        end;
         exit(true);
     end;
 
     trigger OnNextRecord(Steps: Integer): Integer
+    var
     begin
-        testCounter += 1;
+        exit(Steps);
     end;
 
     var
-        testCounter: Integer;
+        TempItems: Record "Item" temporary;
 }
